@@ -1,0 +1,58 @@
+name: Bug report
+description: 报告一个可以复现的问题
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。提交前请先确认：没有粘贴 API Key、个人照片或任何敏感信息。
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 发生了什么
+      description: 实际行为与预期行为的差异。
+      placeholder: 我在……时，应用……
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开……
+        2. 点击……
+        3. 看到……
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 应用版本
+      description: 设置页底部或构建产物的版本号，例如 1.5 (versionCode 6)。
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: 设备与系统
+      placeholder: 例如 Pixel 8 Pro / Android 14，或模拟器型号与 API 级别
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志或截图
+      description: 相关 logcat 片段（请先脱敏）、录屏或截图。
+      render: text
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 确认
+      options:
+        - label: 我已搜索过现有 Issue，确认不是重复问题
+          required: true
+        - label: 此报告不包含密钥、个人照片或其他敏感数据
+          required: true

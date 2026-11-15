@@ -1,0 +1,3 @@
+# LiteRT-LM 0.19.0 does not ship consumer rules. Its JNI bridge and callbacks
+# cross the native boundary by name, and its tool serializers also use reflection.
+-keep class com.google.ai.edge.litertlm.** { *; }

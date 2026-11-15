@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/xunhua666/ootd-today/security/advisories/new
+    about: 安全问题请走私密安全通告，不要公开提交 Issue。
+  - name: 使用问题与讨论
+    url: https://github.com/xunhua666/ootd-today/discussions
+    about: 不确定是不是 Bug、或想聊设计思路，可以到 Discussions。

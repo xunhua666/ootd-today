@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  FileProvider 共享路径配置。
+
+  相机拍照需要把图片写到本应用的私有目录，再通过 content:// URI 交给系统相机，
+  这样就不需要申请 WRITE_EXTERNAL_STORAGE 权限（Android 10+ 已废弃该权限）。
+-->
+<paths>
+    <files-path
+        name="item_photos"
+        path="photos/" />
+    <cache-path
+        name="cache_photos"
+        path="photos/" />
+</paths>

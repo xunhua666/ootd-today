@@ -1,0 +1,54 @@
+今日穿搭 · OOTD Today
+Copyright 2026 今日穿搭 contributors
+
+This product is licensed under the Apache License, Version 2.0.
+See the LICENSE file for the full license text.
+
+This product includes software developed by third parties. The main
+components and their licenses are listed below. Version numbers follow
+gradle/libs.versions.toml; the model is downloaded at runtime and is not
+redistributed with this repository.
+
+AndroidX / Jetpack (core-ktx, lifecycle, activity-compose, navigation,
+Room, DataStore, WorkManager, CameraX, Hilt integration, Compose BOM)
+    Copyright The Android Open Source Project
+    Licensed under the Apache License, Version 2.0.
+
+Jetpack Compose (ui, foundation, material3, material-icons-core)
+    Copyright The Android Open Source Project
+    Licensed under the Apache License, Version 2.0.
+
+Kotlin and kotlinx.coroutines
+    Copyright JetBrains s.r.o.
+    Licensed under the Apache License, Version 2.0.
+
+Hilt / Dagger
+    Copyright Google LLC
+    Licensed under the Apache License, Version 2.0.
+
+Coil (coil3)
+    Copyright Coil Contributors
+    Licensed under the Apache License, Version 2.0.
+
+ML Kit on-device image labeling
+    Copyright Google LLC
+    Provided as a Google SDK, subject to the Google APIs Terms of Service
+    and the ML Kit terms. See https://developers.google.com/ml-kit/terms
+
+LiteRT-LM Android runtime (com.google.ai.edge.litertlm)
+    Copyright Google LLC
+    Licensed under the Apache License, Version 2.0.
+
+Qwen3-1.7B INT4 LiteRT-LM model (optional, downloaded by the user)
+    Copyright Alibaba Cloud
+    Licensed under the Apache License, Version 2.0.
+    Source: https://huggingface.co/litert-community/Qwen3-1.7B
+    The model file is NOT distributed with this repository.
+
+Cartoon expert mascot (app/src/main/res/drawable-nodpi/expert_mascot.png)
+    Original asset generated for this project with a built-in image
+    generation tool. See docs/ASSETS.md for the generation prompt.
+
+Screenshots in docs/screenshots/
+    Captured from test builds of this project; they contain demonstration
+    data only.

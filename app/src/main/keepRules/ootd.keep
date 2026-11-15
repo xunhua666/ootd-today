@@ -1,0 +1,21 @@
+# 「今日穿搭」自定义 R8 keep 规则（AGP 9.3 新 DSL，放在 src/main/keepRules/）。
+#
+# 平台默认规则已隐含包含（等价于 proguard-android-optimize.txt），
+# 这里只补充项目自身需要的部分。
+
+# 保留行号与源文件名，让线上崩溃堆栈可回溯到源码。
+# 混淆后类名会变短，但有了行号 + mapping 文件仍能精确定位。
+-keepattributes SourceFile,LineNumberTable
+-renamesourcefileattribute SourceFile
+
+# 保留枚举的 values()/valueOf()：Room 的 TypeConverters 生成代码
+# 以及 UI 层的 entries 遍历都依赖它们。虽然 KSP 生成代码通常已足够
+# 让 R8 识别引用，但枚举被裁剪后恢复成本极高，这里显式兜底。
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+# WorkManager 的 Worker 由 HiltWorkerFactory 经生成代码实例化，
+# androidx.hilt 已带 consumer 规则；此处再兜底一层，防止规则被过滤后失效。
+-keep class * extends androidx.work.ListenableWorker { <init>(...); }

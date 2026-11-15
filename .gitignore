@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------------
+# Build outputs
+# ---------------------------------------------------------------------------
+/build
+/app/build
+/app/.cxx
+/captures
+.externalNativeBuild
+.cxx
+*.iml
+.gradle
+.kotlin
+.idea
+*.hprof
+
+# ---------------------------------------------------------------------------
+# Local configuration and signing material - never commit
+# ---------------------------------------------------------------------------
+local.properties
+keystore.properties
+*.jks
+*.keystore
+
+# ---------------------------------------------------------------------------
+# Open-source repository exclusions
+#
+# Kept out of Git on purpose:
+#   /artifacts  - milestone evidence, bundled LibreOffice binaries (third-party
+#                 redistribution), downloaded model weights (~1.26 GB)
+#   /backups    - full source snapshots taken before each milestone
+#   *.apk       - build outputs; the local APKs are debug-signed
+#   *.docx      - business plan and other private material
+#   *.litertlm  - model weights, downloaded at runtime instead
+# ---------------------------------------------------------------------------
+/artifacts/
+/backups/
+*.apk
+*.aab
+*.docx
+*.litertlm
+*.part
+
+# ---------------------------------------------------------------------------
+# OS / editor noise
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
