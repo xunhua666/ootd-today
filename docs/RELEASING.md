@@ -87,12 +87,13 @@ CI 每次推送都会跑这个检查，回归会直接失败。
 
 ## 六、第二阶段待办（上架前必须完成）
 
-- 英文界面（当前约 998 处中文字符串字面量，`R.string` 使用数为 0）
-- 英文隐私政策并托管（GitHub Pages 即可），URL 填进 Play Console
-- Data Safety 表单（位置/照片/聊天内容/传输加密）
-- 生成式 AI 合规：聊天页「报告不当内容」入口 + AI 交互披露
-- 商店素材：512 图标、1024×500 feature graphic、英文截图、描述
-- 审核说明（App access）：AI 功能需用户自备 API Key，核心功能无需登录
+- [x] 英文隐私政策页 `docs/privacy.html`（启用 GitHub Pages 后即可作为商店 URL）
+- [x] Data Safety 填写对照 `docs/DATA_SAFETY.md`
+- [x] 生成式 AI 合规：专家页「报告不当内容」入口 + AI 披露（`docs/AI_POLICY.md`）
+- [x] 商店文案与素材清单 `docs/STORE_LISTING.md`
+- [ ] 英文界面（当前 913 处中文字面量，计划见 [I18N_PROGRESS.md](I18N_PROGRESS.md)）
+- [ ] 商店素材：512 图标、1024×500 feature graphic、英文截图
+- [ ] 审核说明（App access）：AI 功能需用户自备 API Key，核心功能无需登录
 
 ## 七、检查清单（提交前）
 

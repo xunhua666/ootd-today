@@ -164,6 +164,15 @@ API Key 通过 Android Keystore（AES/GCM）加密后保存在应用私有 DataS
 
 欢迎 Issue 和 PR，请先读 [CONTRIBUTING.md](CONTRIBUTING.md)。安全问题请按 [SECURITY.md](SECURITY.md) 私下报告，不要公开提交包含密钥或用户照片的 Issue。
 
+## 商店上架资料
+
+- 发布与签名流程：[docs/RELEASING.md](docs/RELEASING.md)
+- 商店文案与素材清单：[docs/STORE_LISTING.md](docs/STORE_LISTING.md)
+- Play 数据安全表单对照：[docs/DATA_SAFETY.md](docs/DATA_SAFETY.md)
+- AI 功能与合规说明：[docs/AI_POLICY.md](docs/AI_POLICY.md)
+- 英文隐私政策：[docs/privacy.html](docs/privacy.html)
+- 英文界面迁移进度：[docs/I18N_PROGRESS.md](docs/I18N_PROGRESS.md)
+
 ## 许可证
 
 本项目以 [Apache License 2.0](LICENSE) 开源，可自由使用、修改和商用，需保留版权与许可声明；第三方组件与素材的许可见 [NOTICE](NOTICE)。

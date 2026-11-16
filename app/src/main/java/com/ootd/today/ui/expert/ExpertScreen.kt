@@ -143,6 +143,17 @@ fun ExpertScreen(viewModel: ExpertViewModel, onBack: () -> Unit) {
             }
             item {
                 Text("我根据衣橱和你确认的版型给建议。照片识别请在单品录入／编辑页使用。对话仅保留在本次会话，偏好保存在手机。", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("AI 生成内容可能不准确，请自行判断。遇到不当内容可以报告，我们会在 7 天内处理。", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                TextButton(onClick = {
+                    runCatching {
+                        context.startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                "https://github.com/xunhua666/ootd-today/issues/new?template=ai_content_report.yml".toUri()
+                            )
+                        )
+                    }
+                }) { Text("报告不当内容") }
                 if (state.messages.isEmpty()) {
                     Row(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         AssistChip(onClick = { modelPanel = false; viewModel.send("请点评系统给出的这套搭配，给我两个可以照着做的小建议。") }, label = { Text("点评今天这套") }, enabled = canChat && !state.busy)

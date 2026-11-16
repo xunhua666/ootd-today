@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OOTD Today — Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; background: #f7f6f1; color: #263329; font: 16px/1.65 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 22px 72px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -0.5px; }
+  .sub { color: #71796b; margin: 0 0 32px; font-size: 14px; }
+  h2 { font-size: 19px; margin: 34px 0 10px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  p, li { margin: 8px 0; }
+  ul { padding-left: 22px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #dfe3d7; vertical-align: top; }
+  th { background: #ecefe3; font-weight: 600; }
+  code { background: #ecefe3; padding: 1px 5px; border-radius: 5px; font-size: 13px; }
+  .card { background: #ffffff; border: 1px solid #dfe3d7; border-radius: 14px; padding: 16px 18px; margin: 16px 0; }
+  a { color: #2f6b4f; }
+  footer { margin-top: 44px; color: #71796b; font-size: 13px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #141814; color: #e5eadd; }
+    th { background: #263329; }
+    th, td { border-bottom-color: #2f3b31; }
+    .card { background: #1b211b; border-color: #2f3b31; }
+    code { background: #263329; }
+    .sub, footer { color: #a9b3a2; }
+    a { color: #9fd3b4; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>OOTD Today — Privacy Policy</h1>
+  <p class="sub">Last updated: 16 November 2026 · Applies to version 1.5 and later</p>
+
+  <div class="card">
+    <strong>Short version.</strong> The app is local-first: your wardrobe, outfits, calendar and logs stay on your phone.
+    We run no analytics, no advertising and no account system. The only data that leaves your device is what you
+    explicitly trigger: a weather query, an optional photo you confirm for garment analysis, an optional chat message
+    to an AI provider you configure, and an optional model download.
+  </div>
+
+  <h2>1. Who we are</h2>
+  <p>
+    OOTD Today is an open-source Android application maintained by an individual developer
+    (<a href="https://github.com/xunhua666/ootd-today">github.com/xunhua666/ootd-today</a>).
+    For any privacy question or request, open an issue in that repository.
+  </p>
+
+  <h2>2. Data we process and where it goes</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Where it is stored</th><th>Leaves the device?</th></tr></thead>
+    <tbody>
+      <tr><td>Wardrobe items, outfits, wear logs, calendar plans</td><td>Local database on your phone</td><td>No</td></tr>
+      <tr><td>Settings, expert name and style preferences</td><td>Local app storage</td><td>No</td></tr>
+      <tr><td>API keys you enter</td><td>Local storage, encrypted with Android Keystore (AES/GCM)</td><td>No</td></tr>
+      <tr><td>Garment photos</td><td>App-private storage</td><td>Only after you confirm an upload to the vision service you configured</td></tr>
+      <tr><td>Approximate location</td><td>Not stored</td><td>Sent to Open-Meteo (weather) as coordinates</td></tr>
+      <tr><td>Chat messages with the AI expert</td><td>Kept in memory for the current session; not stored by us</td><td>Only if you use the cloud expert you configured</td></tr>
+      <tr><td>Local AI model file</td><td><code>getExternalFilesDir()/expert_models/</code></td><td>Downloaded from Hugging Face; no user data uploaded</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Weather</h3>
+  <p>
+    The app requests approximate (city-level) coordinates and sends them to
+    <a href="https://open-meteo.com/">Open-Meteo</a> to fetch the forecast. If you deny location permission, a default
+    city is used instead.
+  </p>
+
+  <h3>Garment photos (optional)</h3>
+  <p>
+    When you choose to analyse a garment, the app asks for confirmation before uploading one photo. The image is
+    resized to a maximum edge of 1280 px, rotated according to EXIF, and re-encoded as JPEG without the original EXIF
+    metadata. It is then sent to the vision endpoint <em>you</em> configured (for example an OpenAI-compatible vision
+    model). The result is a list of candidate garment attributes that you review and confirm before saving. Photos are
+    never uploaded unless you confirm, and the app does not send them to the developer.
+  </p>
+
+  <h3>AI expert (optional)</h3>
+  <p>
+    There are two modes. The <strong>cloud expert</strong> sends your prompt, a text summary of your wardrobe
+    (name, category, colour, style, confirmed garment shape, occasions) and, if you enable it, selected garment photos
+    to the chat-completions endpoint you configured. The <strong>local expert</strong> runs a Qwen3-1.7B model on your
+    phone and does not upload wardrobe data or chat text. In both modes the app states clearly that the content is
+    AI-generated and may be inaccurate.
+  </p>
+
+  <h2>3. What we do not collect</h2>
+  <ul>
+    <li>No account, email address, phone number or name.</li>
+    <li>No analytics, advertising SDK, device identifiers or usage tracking.</li>
+    <li>No crash-reporting SDK that uploads data to us.</li>
+    <li>No training of models on your wardrobe, photos or conversations.</li>
+    <li>No selling or sharing of personal data for marketing.</li>
+  </ul>
+
+  <h2>4. Permissions</h2>
+  <table>
+    <thead><tr><th>Permission</th><th>Why it is used</th></tr></thead>
+    <tbody>
+      <tr><td>Camera</td><td>Take photos of garments or post images inside the app. Requested only when you open the camera.</td></tr>
+      <tr><td>Approximate location</td><td>City-level weather. Optional; the app works with a default city.</td></tr>
+      <tr><td>Notifications</td><td>Daily outfit reminder. Requested only if you enable reminders.</td></tr>
+      <tr><td>Internet</td><td>Weather, optional AI services, optional model download.</td></tr>
+    </tbody>
+  </table>
+  <p>The photo picker is the system picker; the app does not request broad storage access.</p>
+
+  <h2>5. Security</h2>
+  <p>
+    All network requests from the app require HTTPS; plain HTTP is rejected except for loopback addresses used during
+    local development. API keys are encrypted with a key held by the Android Keystore. On devices where the Keystore is
+    unavailable, the app falls back to a locally encoded value in private app storage and does not claim hardware-backed
+    protection.
+  </p>
+
+  <h2>6. Retention and deletion</h2>
+  <p>
+    Data stays on your device until you delete it in the app or uninstall the app. There is no server-side copy held by
+    the developer, so there is nothing for us to delete on your behalf. Third-party AI providers you configure have
+    their own retention policies; please review the terms of the provider you choose.
+  </p>
+
+  <h2>7. Children</h2>
+  <p>
+    The app is not directed to children under 13 (or the minimum age required in your country) and does not knowingly
+    collect personal data from them. The intended audience is adults.
+  </p>
+
+  <h2>8. International users</h2>
+  <p>
+    Because the app has no backend, the developer does not transfer your data internationally. Data sent to Open-Meteo,
+    Hugging Face or your configured AI provider is handled by those providers under their own terms, which may involve
+    processing outside your country.
+  </p>
+
+  <h2>9. Changes</h2>
+  <p>
+    If this policy changes, the updated version will be published at this URL and the date at the top will be revised.
+    Material changes will also be noted in the app's release notes.
+  </p>
+
+  <h2>10. Contact</h2>
+  <p>
+    Privacy questions and data requests:
+    <a href="https://github.com/xunhua666/ootd-today/issues">open an issue</a> in the project repository.
+  </p>
+
+  <footer>
+    This page is the privacy policy referenced by the app's store listing. A Chinese translation of the in-app privacy
+    notes is available in the repository at <code>docs/PRIVACY.md</code>.
+  </footer>
+</main>
+</body>
+</html>

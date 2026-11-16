@@ -2,6 +2,14 @@
 
 本项目按 [语义化版本](https://semver.org/lang/zh-CN/) 标记功能版本，App 的 `versionName` 与仓库 tag 对应。
 
+## 未发布 — 应用商店准备（第二阶段，2026-11）
+
+- 新增英文隐私政策页 `docs/privacy.html`（可直接由 GitHub Pages 托管）。
+- 新增 `docs/STORE_LISTING.md`（英文商店文案、截图清单、内容分级与审核说明）与 `docs/DATA_SAFETY.md`（Play 数据安全表单对照）。
+- 新增 `docs/AI_POLICY.md`：AI 功能清单、已实现的披露与举报措施、Google Play 生成式 AI 政策与欧盟 AI Act 透明度对应关系。
+- 专家页新增 AI 生成内容披露与「报告不当内容」入口，跳转 GitHub Issue 模板 `ai_content_report.yml`。
+- 新增 `scripts/i18n_scan.py` 与 `docs/I18N_PROGRESS.md`：统计出 913 处中文字面量（`ui` 531 / `data` 231 / `domain` 146 / `notification` 5），并给出分阶段迁移计划。
+
 ## 未发布 — 应用商店准备（第一阶段，2026-11）
 
 - 新增正式 upload keystore 签名配置（`keystore.properties` + `ootd-release.jks`，均不入库），release 产物与 AAB 可用自有证书签名。

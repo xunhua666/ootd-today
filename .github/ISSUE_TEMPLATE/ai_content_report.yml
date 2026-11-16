@@ -1,0 +1,44 @@
+name: AI content report
+description: 报告 AI 生成的不当、误导或有害内容
+title: "[AI report] "
+labels: ["ai-content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你帮助改进内容安全。请**不要**粘贴个人隐私、照片或完整聊天记录；
+        只需描述模型输出的大致内容即可。
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 模型说了什么？为什么你认为不当（冒犯、危险、误导、歧视等）？
+      placeholder: 例如：在推荐搭配时给出了带有外貌羞辱的表述……
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: 内容来源
+      options:
+        - 云端审美专家（用户自备 API Key）
+        - 本地审美专家（Qwen3-1.7B）
+        - 其他 AI 相关功能
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: 发生时间（可选）
+      placeholder: 例如 2026-11-16 21:30
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 确认
+      options:
+        - label: 我没有粘贴本人或他人的敏感个人信息
+          required: true
+        - label: 我知道这是 AI 生成内容，报告用于改进安全措施
+          required: true
