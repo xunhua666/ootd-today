@@ -29,15 +29,26 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install SDK platform and build-tools
+      - name: Install Android SDK packages
+        # 不再依赖 android-actions/setup-android：GitHub 的 ubuntu 运行器已预装
+        # Android SDK 与 cmdline-tools，直接调用 sdkmanager 更稳。
         run: |
-          yes | sdkmanager --licenses > /dev/null
+          SDKMANAGER="${ANDROID_HOME:-$ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKMANAGER" ]; then
+            SDKMANAGER="$(command -v sdkmanager || true)"
+          fi
+          if [ -z "$SDKMANAGER" ] || [ ! -x "$SDKMANAGER" ]; then
+            echo "sdkmanager not found. ANDROID_HOME=${ANDROID_HOME:-unset}" >&2
+            ls -la "${ANDROID_HOME:-/usr/local/lib/android/sdk}" >&2 || true
+            exit 1
+          fi
+          echo "ANDROID_HOME=${ANDROID_HOME:-$ANDROID_SDK_ROOT}"
+          echo "Using $SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses > /dev/null || true
           # API 37 的包名在部分 SDK 渠道里带小版本号，两种写法都试一次。
-          sdkmanager "platforms;android-37.0" "build-tools;36.0.0" \
-            || sdkmanager "platforms;android-37" "build-tools;36.0.0"
+          "$SDKMANAGER" "platforms;android-37.0" "build-tools;36.0.0" \
+            || "$SDKMANAGER" "platforms;android-37" "build-tools;36.0.0"
+          "$SDKMANAGER" --list_installed | sed -n '1,30p'
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
