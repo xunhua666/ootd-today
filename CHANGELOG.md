@@ -2,6 +2,15 @@
 
 本项目按 [语义化版本](https://semver.org/lang/zh-CN/) 标记功能版本，App 的 `versionName` 与仓库 tag 对应。
 
+## 未发布 — 应用商店准备（第一阶段，2026-11）
+
+- 新增正式 upload keystore 签名配置（`keystore.properties` + `ootd-release.jks`，均不入库），release 产物与 AAB 可用自有证书签名。
+- ML Kit 图像打标由 17.0.7 升级到 **17.0.9**：传递依赖 `vision-internal-vkp` 18.2.2 → 18.2.3，原生库 **支持 16 KB 页面大小**，满足 Google Play 对 targetSdk 35+ 的硬性要求。
+- 新增 `scripts/check_16kb.py`：解析 APK/AAB 内 64 位 `.so` 的 ELF `PT_LOAD` 对齐，CI 每次推送校验。
+- 网络层强制 **HTTPS**：`HttpJson` 拒绝远端明文 HTTP，仅放行本机回环地址；新增 7 个传输安全单元测试。
+- CI 新增 release APK + AAB 构建与 16 KB 校验步骤。
+- 新增 [docs/RELEASING.md](docs/RELEASING.md)：签名、AAB、Play 上架与第二阶段待办清单。
+
 ## v1.5.0 — 首次开源（2026-11）
 
 - 以 v1.5 代码为基线发布首个开源版本，许可证 Apache-2.0。

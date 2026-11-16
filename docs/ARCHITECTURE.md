@@ -146,6 +146,10 @@ StylistIntent → 把口语追问归一化为明确指令（不消耗网络请�
 - Room schema 使用 KSP 参数导出到 `app/schemas`，并作为 androidTest assets 挂载。
 - Release 使用 AGP 9 的 `optimization { enable = true }`，keep 规则在 `app/src/main/keepRules/`。
 - 构建要求 JDK 21；Gradle wrapper 为 9.5.0。
+- **签名**：`app/build.gradle.kts` 从项目根目录的 `keystore.properties` 读取 upload key（`storeFile` 相对项目根解析）；文件不存在时 release 回退 debug 签名，仅用于本机验证。上架流程见 [RELEASING.md](RELEASING.md)。
+- **发布产物**：Play 上传 `.aab`（`./gradlew :app:bundleRelease`），本机验证用 `.apk`（`assembleRelease`）。
+- **16 KB 页面大小**：`scripts/check_16kb.py` 解析 APK/AAB 内 64 位 `.so` 的 ELF `PT_LOAD` 对齐，CI 每次推送都会校验；`zipalign -P 16` 只检查 zip 偏移，不能替代它。
+- **网络传输**：`HttpJson` 只允许 HTTPS，仅本机回环地址例外（便于 `adb reverse` 调试）；这条约束有单元测试保护。
 
 ## 测试策略
 

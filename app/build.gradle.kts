@@ -25,16 +25,20 @@ android {
     }
 
     signingConfigs {
-        // 正式签名从项目根目录的 keystore.properties 读取（该文件不入库）。
-        // 文件不存在时不创建 config，release 回退到 debug 签名以便本机验证。
+        // 正式签名从项目根目录的 keystore.properties 读取（该文件与 .jks 都不入库）。
+        // 没有配置或文件缺失时 release 回退到 debug 签名，保证本机仍可安装验证；
+        // 但上架 Google Play 必须使用这里的正式签名（Play App Signing 的 upload key）。
         val propsFile = rootProject.file("keystore.properties")
         if (propsFile.exists()) {
-            create("release") {
-                val props = Properties().apply { FileInputStream(propsFile).use { load(it) } }
-                storeFile = file(props.getProperty("storeFile"))
-                storePassword = props.getProperty("storePassword")
-                keyAlias = props.getProperty("keyAlias")
-                keyPassword = props.getProperty("keyPassword")
+            val props = Properties().apply { FileInputStream(propsFile).use { load(it) } }
+            val store = rootProject.file(props.getProperty("storeFile"))
+            if (store.exists()) {
+                create("release") {
+                    storeFile = store
+                    storePassword = props.getProperty("storePassword")
+                    keyAlias = props.getProperty("keyAlias")
+                    keyPassword = props.getProperty("keyPassword")
+                }
             }
         }
     }

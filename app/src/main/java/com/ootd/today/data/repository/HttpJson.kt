@@ -2,7 +2,7 @@ package com.ootd.today.data.repository
 
 import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
-import java.net.URL
+import java.net.URI
 
 /**
  * 极简 HTTP 工具。
@@ -10,6 +10,10 @@ import java.net.URL
  * 项目只与几个只读接口和一个大模型接口通信，为此引入 Retrofit/OkHttp
  * 并不划算，用 [HttpURLConnection] 足够。各数据源共用这里的超时与异常处理，
  * 避免各写一份、行为不一致。
+ *
+ * **只允许 HTTPS**：用户的衣橱照片、聊天内容和第三方 Key 都会经过这些请求，
+ * 明文 HTTP 会让 Google Play 的「传输加密」声明不成立，也存在中间人风险。
+ * 本机回环地址（localhost / 127.0.0.1 / ::1）例外，方便 `adb reverse` 调试。
  */
 internal object HttpJson {
 
@@ -71,11 +75,25 @@ internal object HttpJson {
 
     private fun openConnection(url: String, timeoutMs: Int): HttpURLConnection? =
         runCatching {
-            (URL(url).openConnection() as HttpURLConnection).apply {
+            val uri = URI(url)
+            require(isAllowed(uri)) { "只允许 HTTPS 请求" }
+            (uri.toURL().openConnection() as HttpURLConnection).apply {
                 connectTimeout = timeoutMs
                 readTimeout = timeoutMs
             }
         }.getOrNull()
+
+    /**
+     * 允许 https；此外仅放行本机回环的 http（调试用）。
+     * 非 http(s) 协议一律拒绝。
+     */
+    internal fun isAllowed(uri: URI): Boolean {
+        val scheme = uri.scheme?.lowercase() ?: return false
+        if (scheme == "https") return true
+        if (scheme != "http") return false
+        val host = uri.host?.lowercase() ?: return false
+        return host == "localhost" || host == "127.0.0.1" || host == "::1"
+    }
 
     private fun readBody(connection: HttpURLConnection): String? =
         if (connection.responseCode == HttpURLConnection.HTTP_OK) {

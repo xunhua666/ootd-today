@@ -34,6 +34,8 @@ Android 自动备份默认开启，但已通过 `res/xml/backup_rules.xml` 与 `
 
 视觉与对话服务由**用户自己填写**地址、模型名和 API Key。应用不内置任何服务商密钥，也不经手任何第三方账号。
 
+所有网络请求强制使用 HTTPS：`HttpJson` 会拒绝远端明文 HTTP（仅本机回环地址 `localhost` / `127.0.0.1` 为调试放行），因此天气、云视觉、云专家与模型下载的传输都经过 TLS。对应约束有单元测试保护。详见 [ARCHITECTURE.md](ARCHITECTURE.md)。
+
 ## 照片处理
 
 版型识别路径上的处理顺序：

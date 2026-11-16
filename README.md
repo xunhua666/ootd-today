@@ -98,16 +98,25 @@ app/src/main/java/com/ootd/today/
 ### 构建与测试
 
 ```bash
-git clone https://github.com/<your-name>/ootd-today.git
+git clone https://github.com/xunhua666/ootd-today.git
 cd ootd-today
 
-# 可选：配置正式签名。没有该文件时 release 会回退到 debug 签名，便于本机验证。
-cp keystore.properties.example keystore.properties
-
+# 本地调试
 ./gradlew :app:assembleDebug
 ./gradlew :app:testDebugUnitTest
 ./gradlew :app:lintDebug
+
+# 发布产物（先在项目根目录放 keystore.properties，详见 docs/RELEASING.md）
+./gradlew :app:assembleRelease :app:bundleRelease
+
+# 校验 16 KB 页面大小兼容（Google Play 对 targetSdk 35+ 的硬性要求）
+python3 scripts/check_16kb.py \
+  app/build/outputs/apk/release/app-release.apk \
+  app/build/outputs/bundle/release/app-release.aab
 ```
+
+没有 `keystore.properties` 时 release 会回退到 debug 签名，本机验证够用；
+**上架 Google Play 必须使用自己的 upload key**（Play App Signing），流程见 [docs/RELEASING.md](docs/RELEASING.md)。
 
 Windows 下用 `.\gradlew.bat`。首次构建需要联网下载依赖。
 
@@ -133,7 +142,7 @@ API Key 通过 Android Keystore（AES/GCM）加密后保存在应用私有 DataS
 
 | 类型 | 内容 |
 |---|---|
-| JVM 单元测试 | 19 个测试类、**157 项**，覆盖推荐引擎、审美评分、版型规则、配色计算、意图解析、快照编解码、日历日期、社区文本等纯逻辑；最近一次运行 0 失败 |
+| JVM 单元测试 | 20 个测试类、**164 项**，覆盖推荐引擎、审美评分、版型规则、配色计算、意图解析、快照编解码、日历日期、社区文本、HTTP 传输安全等纯逻辑；最近一次运行 0 失败 |
 | 设备测试 | Room 迁移、视觉同意流程、日程 UI 拖拽与增删 |
 
 ```bash
@@ -146,9 +155,10 @@ API Key 通过 Android Keystore（AES/GCM）加密后保存在应用私有 DataS
 - **识别准确率未评测**：云视觉只做了协议与保守解析的单元测试，未做真实照片准确率评测；版型标签都允许用户手动修改。
 - **本地模型性能未评测**：1.7B 模型在 6–8 GB 内存真机上的速度、发热和峰值内存仍需实测；每次请求会新建推理 Engine，冷启动较慢。
 - **云服务需要自备 Key**：面向普通用户的产品化还需要服务端代理、额度与限流。
-- **未做多语言**：界面文案目前直接写在 Compose 代码中，`res/values/strings.xml` 尚未接入。
-- **签名**：仓库不包含正式 keystore；release 构建在缺少 `keystore.properties` 时使用 debug 签名，仅适合本机验证。
-- 部分第三方原生库（ML Kit）存在 16 KB 页对齐警告，属于上游 SDK 已知问题。
+- **未做多语言**：界面文案目前直接写在 Compose 代码中，`res/values/strings.xml` 尚未接入，海外上架前需要英文版本。
+- **上架准备中**：隐私政策托管、Data Safety 表单、AI 内容举报入口、商店素材尚未完成，清单见 [docs/RELEASING.md](docs/RELEASING.md)。
+- **签名**：仓库不包含 keystore；上架需要自建 upload key 并启用 Play App Signing，流程见 [docs/RELEASING.md](docs/RELEASING.md)。
+- **原生库 16 KB 页面大小**：已通过 ML Kit 17.0.9 + `scripts/check_16kb.py` 校验（arm64/x86_64 全部 `PT_LOAD` ≥ 16 KB）。
 
 ## 参与贡献
 

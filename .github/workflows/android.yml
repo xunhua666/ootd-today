@@ -59,6 +59,17 @@ jobs:
       - name: Run Android Lint
         run: ./gradlew --no-daemon :app:lintDebug
 
+      # CI 没有 keystore.properties，release 会回退到 debug 签名；
+      # 这一步只验证 release 变体与 AAB 能构建成功，以及原生库满足 Play 要求。
+      - name: Build release APK and AAB
+        run: ./gradlew --no-daemon :app:assembleRelease :app:bundleRelease
+
+      - name: Verify 16 KB page size support
+        run: |
+          python3 scripts/check_16kb.py \
+            app/build/outputs/apk/release/app-release.apk \
+            app/build/outputs/bundle/release/app-release.aab
+
       - name: Upload test and lint reports
         if: always()
         uses: actions/upload-artifact@v4

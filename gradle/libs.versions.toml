@@ -29,7 +29,8 @@ camerax = "1.5.3"
 work = "2.10.0"
 
 # --- On-device ML ---
-mlkitLabeling = "17.0.7"
+# 17.0.9 起 vision-internal-vkp 升级到 18.2.3，原生库才支持 16 KB 页面大小。
+mlkitLabeling = "17.0.9"
 
 # --- Testing ---
 # 单元测试用的真实 org.json 实现（Android 自带的是空壳）
