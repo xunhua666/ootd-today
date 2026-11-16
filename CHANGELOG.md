@@ -2,6 +2,13 @@
 
 本项目按 [语义化版本](https://semver.org/lang/zh-CN/) 标记功能版本，App 的 `versionName` 与仓库 tag 对应。
 
+## 未发布 — 英文界面迁移（第 1 批，2026-11）
+
+- 建立双语资源：默认英文 `values/strings.xml`，中文 `values-zh/strings.xml`；新增 `locales_config.xml` 并在 Manifest 声明 `localeConfig`，Android 13+ 可在系统设置里切换应用语言。
+- `ClothingCategory`、`Occasion`、`WeatherCondition` 增加 `@StringRes labelRes`：界面按系统语言显示，中文 `label` 继续供模型提示词与搜索使用。
+- 底部导航、今日页、专家入口条、体验衣橱横幅、今日页 ViewModel 提示全部迁移到 `stringResource` / `context.getString`；日期格式改为跟随系统语言（不再硬编码 `Locale.CHINA`）。
+- 中文字面量基线由 913 降至 **843**（`ui` 531 → 461），见 `docs/I18N_PROGRESS.md`。
+
 ## 未发布 — 应用商店准备（第二阶段，2026-11）
 
 - 新增英文隐私政策页 `docs/privacy.html`（可直接由 GitHub Pages 托管）。

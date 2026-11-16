@@ -1,40 +1,132 @@
-<resources>
-    <string name="app_name">今日穿搭</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Default locale: English. Chinese lives in values-zh. -->
+    <string name="app_name">OOTD Today</string>
 
     <!-- Bottom navigation -->
-    <string name="nav_today">今日</string>
-    <string name="nav_wardrobe">衣橱</string>
-    <string name="nav_add">录入</string>
-    <string name="nav_calendar">日历</string>
-    <string name="nav_profile">我的</string>
+    <string name="nav_today">Today</string>
+    <string name="nav_wardrobe">Wardrobe</string>
+    <string name="nav_add">Add</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_profile">Me</string>
+    <string name="nav_add_item_desc">Add a new item</string>
+
+    <!-- Categories -->
+    <string name="category_top">Top</string>
+    <string name="category_bottom">Bottom</string>
+    <string name="category_one_piece">One-piece</string>
+    <string name="category_outerwear">Outerwear</string>
+    <string name="category_shoes">Shoes</string>
+    <string name="category_bag">Bag</string>
+    <string name="category_accessory">Accessory</string>
+
+    <!-- Occasions -->
+    <string name="occasion_commute">Work</string>
+    <string name="occasion_date">Date</string>
+    <string name="occasion_sport">Sport</string>
+    <string name="occasion_home">Home</string>
+    <string name="occasion_formal">Formal</string>
+    <string name="occasion_vacation">Vacation</string>
+
+    <!-- Weather -->
+    <string name="weather_sunny">Sunny</string>
+    <string name="weather_cloudy">Cloudy</string>
+    <string name="weather_overcast">Overcast</string>
+    <string name="weather_rain">Rain</string>
+    <string name="weather_snow">Snow</string>
+
+    <!-- Demo wardrobe banner -->
+    <string name="demo_title">Sample wardrobe · demo content</string>
+    <string name="demo_desc">These pieces are for trying the app and never count toward your stats. Add your own clothes to start your wardrobe.</string>
+    <string name="demo_action">Start my wardrobe</string>
 
     <!-- Today -->
-    <string name="today_title">今日穿搭</string>
-    <string name="today_refresh">换一套</string>
-    <string name="today_random">随机穿搭</string>
-    <string name="today_adopt">就穿这套</string>
-    <string name="today_like">喜欢</string>
-    <string name="today_dislike">不喜欢</string>
-    <string name="today_occasion">场合</string>
+    <string name="today_brand_sub">OOTD Today</string>
+    <string name="today_tagline">Dress well, live slow.</string>
+    <string name="today_focus_title">Build around this piece</string>
+    <string name="today_focus_clear">Clear the selected item</string>
+    <string name="today_weather_unavailable">Weather is not available</string>
+    <string name="today_retry">Try again</string>
+    <string name="today_occasion_prompt">Where are you heading today?</string>
+    <string name="today_empty_title">Every piece has a new possibility</string>
+    <string name="today_empty_focused">This item cannot form a complete outfit for the current weather and occasion. Try another occasion, add more pieces, or clear the selection.</string>
+    <string name="today_empty_small_wardrobe">Add a top, a bottom and shoes — or try another occasion — and let your wardrobe plan the day.</string>
+    <string name="today_empty_weather">Outfit ideas will appear once the weather is ready.</string>
+    <string name="today_add_first_item">Add my first item</string>
+    <string name="today_saving">Saving…</string>
+    <string name="today_adopt_demo">Add my items to start logging</string>
+    <string name="today_adopt">Wear this · log today</string>
+    <string name="today_snack_adopted">Saved to your calendar. Have a good day.</string>
+    <string name="today_snack_failed">Could not save. Please try again.</string>
+    <string name="today_snack_liked">Noted — recommendations will lean this way.</string>
+    <string name="today_snack_disliked">Got it — fewer outfits like this.</string>
+    <string name="today_shuffle">Shuffle</string>
+    <string name="today_like">Like</string>
+    <string name="today_dislike">Different style</string>
+    <string name="today_share">Share outfit list</string>
+    <string name="today_share_chooser">Share today\'s outfit</string>
+    <string name="today_share_header">My outfit today · %1$s</string>
+    <string name="today_share_footer">From OOTD Today</string>
+    <string name="today_focus_algo_note">Generating with the local algorithm around the selected item. Clear the selection to ask the AI stylist.</string>
+    <string name="today_stylist_title">Your personal stylist</string>
+    <string name="today_stylist_subtitle">Download the on-device expert to talk colour and style</string>
+    <string name="today_expert_default_name">Your stylist</string>
 
-    <!-- Wardrobe -->
-    <string name="wardrobe_title">我的衣橱</string>
-    <string name="wardrobe_empty">衣橱还是空的\n点下方 ➕ 录入第一件单品</string>
-    <string name="wardrobe_count">%1$d 件单品</string>
+    <!-- Stylist bar -->
+    <string name="stylist_status_not_ready">Not configured · add a key in Me → Settings</string>
+    <string name="stylist_status_consulting">Reading your wardrobe…</string>
+    <string name="stylist_status_followup">Want changes? Just say it</string>
+    <string name="stylist_status_idle">Let the editor pick an outfit</string>
+    <string name="stylist_ask">Ask %1$s (cloud)</string>
+    <string name="stylist_asking">One moment…</string>
+    <string name="stylist_followup_placeholder">What should change? e.g. “different trousers”</string>
+    <string name="stylist_send">Send</string>
+    <string name="stylist_quick_too_plain">Too plain</string>
+    <string name="stylist_quick_change_bottom">Change the bottoms</string>
+    <string name="stylist_quick_formal">More formal</string>
+    <string name="stylist_quick_casual">More casual</string>
+    <string name="stylist_quick_too_busy">Too busy</string>
 
-    <!-- Add / Edit item -->
-    <string name="add_title">录入单品</string>
-    <string name="add_camera">拍照</string>
-    <string name="add_gallery">相册</string>
-    <string name="add_save">保存</string>
+    <!-- Today recommendation card -->
+    <string name="today_recommendation_stylist_title">Stylist\'s pick</string>
+    <string name="today_recommendation_local_title">Today\'s edit</string>
+    <string name="today_score_label">Score</string>
+    <string name="today_items_for_occasion">%1$d pieces for %2$s</string>
+    <string name="today_palette">Palette</string>
 
-    <!-- Calendar -->
-    <string name="calendar_title">穿搭日历</string>
+    <!-- Weather card -->
+    <string name="today_weather_live">Live weather</string>
+    <string name="today_weather_offline">Offline sample</string>
+    <string name="today_weather_range">%1$d° — %2$d°   ·   Humidity %3$d%%</string>
+    <string name="today_weather_hint_rain">Today\'s note / Bring rain gear and choose water-resistant shoes</string>
+    <string name="today_weather_hint_gap">Today\'s note / Big temperature swing — keep a layer handy</string>
+    <string name="today_weather_hint_cold">Today\'s note / Soft layers for just-right warmth</string>
+    <string name="today_weather_hint_hot">Today\'s note / Light, breathable pieces for a bit of air</string>
+    <string name="today_weather_hint_mild">Today\'s note / Pleasant out — wear a colour you love</string>
+    <string name="today_weather_location_hint">Default city · Tap to use my location ↗</string>
 
-    <!-- Profile -->
-    <string name="profile_title">我的</string>
-    <string name="profile_stats">穿搭统计</string>
-    <string name="profile_community">穿搭社区</string>
-    <string name="profile_settings">设置</string>
-    <string name="profile_coming_soon">敬请期待</string>
+    <!-- ViewModel messages -->
+    <string name="vm_stylist_unavailable">The cloud stylist is unavailable; your current outfit is kept.</string>
+    <string name="vm_stylist_not_understood">I did not catch that — try saying it differently.</string>
+
+    <!-- Kept for later screens in the migration -->
+    <string name="today_title">OOTD Today</string>
+    <string name="today_refresh">Shuffle</string>
+    <string name="today_random">Random outfit</string>
+    <string name="today_adopt_short">Wear this</string>
+    <string name="today_like_short">Like</string>
+    <string name="today_dislike_short">Dislike</string>
+    <string name="today_occasion">Occasion</string>
+    <string name="wardrobe_title">My wardrobe</string>
+    <string name="wardrobe_empty">Your wardrobe is empty\nTap + below to add your first item</string>
+    <string name="wardrobe_count">%1$d items</string>
+    <string name="add_title">Add item</string>
+    <string name="add_camera">Camera</string>
+    <string name="add_gallery">Gallery</string>
+    <string name="add_save">Save</string>
+    <string name="calendar_title">Outfit calendar</string>
+    <string name="profile_title">Me</string>
+    <string name="profile_stats">Outfit stats</string>
+    <string name="profile_community">Community</string>
+    <string name="profile_settings">Settings</string>
+    <string name="profile_coming_soon">Coming soon</string>
 </resources>

@@ -1,7 +1,9 @@
 package com.ootd.today.ui.today
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ootd.today.R
 import com.ootd.today.data.model.Coordinates
 import com.ootd.today.data.model.Occasion
 import com.ootd.today.data.model.Outfit
@@ -19,6 +21,7 @@ import com.ootd.today.domain.stylist.StylistAdvice
 import com.ootd.today.domain.stylist.StylistService
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -76,7 +79,8 @@ class TodayViewModel @Inject constructor(
     private val locationRepository: LocationRepository,
     private val engine: OutfitRecommendEngine,
     private val stylistService: StylistService,
-    private val settingsRepository: com.ootd.today.data.prefs.SettingsRepository
+    private val settingsRepository: com.ootd.today.data.prefs.SettingsRepository,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     val expertProfile = settingsRepository.settings.stateIn(
@@ -182,7 +186,7 @@ class TodayViewModel @Inject constructor(
                 _uiState.update {
                     it.copy(
                         isConsulting = false,
-                        stylistError = "云端专家暂时无法连接，当前搭配已保留"
+                        stylistError = context.getString(R.string.vm_stylist_unavailable)
                     )
                 }
                 return@launch
@@ -225,7 +229,7 @@ class TodayViewModel @Inject constructor(
                 _uiState.update {
                     it.copy(
                         isConsulting = false,
-                        stylistError = "没听懂，换个说法试试？"
+                        stylistError = context.getString(R.string.vm_stylist_not_understood)
                     )
                 }
                 return@launch

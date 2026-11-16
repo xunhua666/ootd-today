@@ -1,5 +1,8 @@
 package com.ootd.today.ui.navigation
 
+import androidx.annotation.StringRes
+import com.ootd.today.R
+
 /**
  * 全部路由。
  *
@@ -59,13 +62,13 @@ object Routes {
  */
 enum class BottomDestination(
     val route: String,
-    val label: String,
+    @StringRes val labelRes: Int,
     val emoji: String,
     val isCenterAction: Boolean = false
 ) {
-    TODAY(Routes.TODAY, "今日", "☀️"),
-    WARDROBE(Routes.WARDROBE, "衣橱", "👕"),
-    ADD(Routes.ADD_ITEM, "录入", "＋", isCenterAction = true),
-    CALENDAR(Routes.CALENDAR, "日历", "📅"),
-    PROFILE(Routes.PROFILE, "我的", "🙋")
+    TODAY(Routes.TODAY, R.string.nav_today, "☀️"),
+    WARDROBE(Routes.WARDROBE, R.string.nav_wardrobe, "👕"),
+    ADD(Routes.ADD_ITEM, R.string.nav_add, "＋", isCenterAction = true),
+    CALENDAR(Routes.CALENDAR, R.string.nav_calendar, "📅"),
+    PROFILE(Routes.PROFILE, R.string.nav_profile, "🙋")
 }

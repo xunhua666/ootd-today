@@ -1,20 +1,26 @@
 package com.ootd.today.data.model
 
+import androidx.annotation.StringRes
+import com.ootd.today.R
+
 /**
  * 天气状况。
+ *
+ * [label] 为中文，用于模型提示词；[labelRes] 用于界面展示，随系统语言切换。
  *
  * @property isRainy 是否有降水，用于推荐时提示带伞、避免浅色鞋。
  */
 enum class WeatherCondition(
     val label: String,
+    @StringRes val labelRes: Int,
     val emoji: String,
     val isRainy: Boolean
 ) {
-    SUNNY("晴", "☀️", false),
-    CLOUDY("多云", "⛅", false),
-    OVERCAST("阴", "☁️", false),
-    RAIN("雨", "🌧", true),
-    SNOW("雪", "🌨", true)
+    SUNNY("晴", R.string.weather_sunny, "☀️", false),
+    CLOUDY("多云", R.string.weather_cloudy, "⛅", false),
+    OVERCAST("阴", R.string.weather_overcast, "☁️", false),
+    RAIN("雨", R.string.weather_rain, "🌧", true),
+    SNOW("雪", R.string.weather_snow, "🌨", true)
 }
 
 /**

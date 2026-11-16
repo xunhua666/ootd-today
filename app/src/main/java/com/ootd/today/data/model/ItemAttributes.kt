@@ -1,15 +1,24 @@
 package com.ootd.today.data.model
 
+import androidx.annotation.StringRes
+import com.ootd.today.R
+
 /**
  * 穿着场合。推荐算法的核心过滤维度之一。
+ *
+ * [label] 为中文，用于模型提示词与搜索；[labelRes] 用于界面展示，随系统语言切换。
  */
-enum class Occasion(val label: String, val emoji: String) {
-    COMMUTE("通勤", "💼"),
-    DATE("约会", "🌹"),
-    SPORT("运动", "🏃"),
-    HOME("居家", "🏠"),
-    FORMAL("正式", "🎩"),
-    VACATION("度假", "🏖")
+enum class Occasion(
+    val label: String,
+    @StringRes val labelRes: Int,
+    val emoji: String
+) {
+    COMMUTE("通勤", R.string.occasion_commute, "💼"),
+    DATE("约会", R.string.occasion_date, "🌹"),
+    SPORT("运动", R.string.occasion_sport, "🏃"),
+    HOME("居家", R.string.occasion_home, "🏠"),
+    FORMAL("正式", R.string.occasion_formal, "🎩"),
+    VACATION("度假", R.string.occasion_vacation, "🏖")
 }
 
 /**
