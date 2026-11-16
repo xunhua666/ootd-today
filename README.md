@@ -5,6 +5,7 @@
 **把你已经拥有的衣服，变成每天都能用的衣橱。**
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Android CI](https://github.com/xunhua666/ootd-today/actions/workflows/android.yml/badge.svg)](https://github.com/xunhua666/ootd-today/actions/workflows/android.yml)
 [![Android](https://img.shields.io/badge/Android-7.0%2B%20(API%2024)-3DDC84?logo=android&logoColor=white)]()
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.21-7F52FF?logo=kotlin&logoColor=white)]()
 [![Compose](https://img.shields.io/badge/Compose-Material%203-4285F4?logo=jetpackcompose&logoColor=white)]()
